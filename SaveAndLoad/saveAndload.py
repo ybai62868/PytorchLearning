@@ -33,21 +33,12 @@ def save():
     torch.save(net1,'net.pkl') # method 1 
     torch.save(net1.state_dict(),'net.params.pkl') # method 2
 
-    plt.figure(1,figsize = (10,3))
-    plt.subplot(131)
-    plt.title('Net1')
-    plt.scatter(x.data.numpy(),y.data.numpy())
-    plt.plot(x.data.numpy(),prediction.data.numpy(),'r-',lw = 5)
-
 
 # method 1
 def restore_net():
     net2 = torch.load('net.pkl')
     prediction = net2(x)
-    plt.subplot(132)
-    plt.title('Net2')
-    plt.scatter(x.data.numpy(),y.data.numpy())
-    plt.plot(x.data.numpy(),prediction.data.numpy(),'r-',lw = 5)
+
 
 # method 2
 def restore_params():
@@ -58,10 +49,7 @@ def restore_params():
     )
     net3.load_state_dict(torch.load('net.params.pkl'))
     prediction = net3(x)
-    plt.subplot(133)
-    plt.title('Net3')
-    plt.scatter(x.data.numpy(),y.data.numpy())
-    plt.plot(x.data.numpy(),prediction.data.numpy(),'r-',lw = 5)
+
 
 
 save()
@@ -70,6 +58,5 @@ restore_net()
 
 restore_params()
 
-plt.show()
 
 
